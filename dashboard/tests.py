@@ -1,3 +1,28 @@
-from django.test import TestCase
+from django.test import Client, TestCase
+
+import os
+import pathlib
+import unittest
+
+from selenium import webdriver
+
+def file_uri(filename):
+    return pathlib.Path(os.path.abspath(filename)).as_uri()
+
+driver = webdriver.Chrome()
 
 # Create your tests here.
+class LocationTestCase(TestCase):
+
+    def setUp(self):
+
+        # Create users
+
+        # Create locations
+        
+        pass
+
+class WebpageTests(unittest.TestCase):
+
+    def test_title(self):
+        pass
