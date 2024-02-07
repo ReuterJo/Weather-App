@@ -1,25 +1,18 @@
 services:
-  db:
-    image: postgres
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-  web:
-    build: .
+  backend:
+    build: ./weather-app-backend/
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/code
+      - .:/backend/code
     ports:
       - "8000:8000"
-    environment:
-      AUTH0_CLIENT_ID: ${AUTH0_CLIENT_ID}
-      AUTH0_CLIENT_SECRET: ${AUTH0_CLIENT_SECRET}
-      AUTH0_DOMAIN: ${AUTH0_DOMAIN}
-      POSTGRES_NAME: ${POSTGRES_NAME}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  frontend:
+    build: ./weather-app-frontend/
+    command: npm start
+    volumes:
+      - .:/frontend/code
+    ports:
+      - "3000:3000"
+      - "3001:3001"
     depends_on:
-      - db
+      - backend
