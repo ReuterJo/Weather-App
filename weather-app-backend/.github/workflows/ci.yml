@@ -10,5 +10,5 @@ jobs:
       run: |
         pip3 install --user django
         python3 manage.py test
-      working-directory: ./weather-app-backend
+      working-directory: ./weather-app/weather-app-backend
       
