@@ -4,12 +4,10 @@ on: push
 jobs:
   test_project:
     runs-on: ubuntu-latest
-    defaults:
-      run: 
-        working-directory: weather-app-backend
     steps:
     - uses: actions/checkout@v2
     - name: Run Django unit tests
+      working-directory: ./weather-app-backend
       run: |
         pip3 install --user django
         python3 manage.py test
