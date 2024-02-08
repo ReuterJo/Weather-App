@@ -1,18 +1,17 @@
 name: Testing
 on: push
 
+defaults:
+  run:
+    working-directory: 'weather-app-backend'
+
 jobs:
   test_project:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Install Django
-      working-directory: ./weather-app-backend
-      run: pip3 install --user django
-      
-  
-    - uses: actions/checkout@v2
-    - name: Test Django
-      working-directory: ./weather-app-backend
-      run: python3 manage.py test
+    - name: Install and Test Django
+      run: |
+        pip3 install --user django
+        python3 manage.py test
       
