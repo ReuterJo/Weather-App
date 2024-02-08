@@ -10,9 +10,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./weather-app-backend
+    env:
+      working-directory: ./weather-app-backend
     strategy:
       max-parallel: 4
       matrix:
