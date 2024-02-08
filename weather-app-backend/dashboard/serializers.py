@@ -1,8 +1,8 @@
 from rest_framework import serializers
 
-from .models import Location
+from .models import City
 
-class LocationSerializer(serializers.ModelSerializer):
+class CitySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Location
-        fields = ('id', 'title')
+        model = City
+        fields = ('id', 'name', 'country')
