@@ -8,9 +8,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install Django
       run: pip3 install --user django
-      working-directory: ./weather-app-backend
+      working-directory: ./weather-app/weather-app-backend
   
     - uses: actions/checkout@v2
     - name: Test Django
       run: python3 manage.py test
-      working-directory: ./weather-app-backend
+      working-directory: ./weather-app/weather-app-backend
