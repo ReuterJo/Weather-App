@@ -8,6 +8,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install and Test Django
       run: |
+        ls -al
+        pwd
         pip3 install --user django
         python3 manage.py test
       working-directory: ./weather-app/weather-app-backend
