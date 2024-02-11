@@ -39,3 +39,9 @@
   border-radius: 10px;
   padding: 15px;
 }
+
+.btn:focus {
+  outline: none !important;
+  outline-offset: none !important;
+  box-shadow: none !important;
+}

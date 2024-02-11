@@ -1,8 +1,7 @@
-import { React, useState, useEffect } from "react";
+import { Fragment, React } from "react";
+import { Helmet } from "react-helmet";
 import { Router, Route, Switch } from "react-router-dom";
 import { Container } from "reactstrap";
-
-import { loadCities } from "./routing/routes";
 
 import Loading from "./components/Loading";
 import NavBar from "./components/NavBar";
@@ -22,12 +21,6 @@ initFontAwesome();
 
 const App = () => {
   const { isLoading, error } = useAuth0();
-  const [cities, setCities] = useState([]);
-
-  useEffect(() => {
-    document.title = "Weather App";
-    loadCities(setCities);
-  }, [setCities]);
 
   if (error) {
     return <div>Oops... {error.message}</div>;
@@ -38,24 +31,24 @@ const App = () => {
   }
 
   return (
-    <Router history={history}>
-      <div id="app" className="d-flex flex-column h-100">
-        <NavBar />
-        <Container className="flex-grow-1 mt-5">
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/dashboard">
-              <Dashboard 
-                cities = {cities}
-                setCities = {setCities}
-              />
-            </Route>
-            <Route path="/profile" component={Profile} />
-          </Switch>
-        </Container>
-        <Footer />
-      </div>
-    </Router>
+    <Fragment>
+      <Helmet>
+          <title>Weather App</title>
+        </Helmet>
+      <Router history={history}>
+        <div id="app" className="d-flex flex-column h-100">
+          <NavBar />
+          <Container className="flex-grow-1 mt-5">
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/dashboard" component={Dashboard} />
+              <Route path="/profile" component={Profile} />
+            </Switch>
+          </Container>
+          <Footer />
+        </div>
+      </Router>
+    </Fragment>
   );
 };
 

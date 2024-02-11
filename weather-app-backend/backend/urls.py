@@ -23,8 +23,10 @@ from rest_framework import routers
 router = routers.DefaultRouter()
 
 router.register(r'cities', views.CityView, 'city')
+router.register(r"userIds", views.UserIdView, 'userId')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)),
+    path('dashboard/', include('dashboard.urls'))
 ]
