@@ -3,13 +3,13 @@ import { Router, Route, Switch } from "react-router-dom";
 import { Container } from "reactstrap";
 
 import { loadCities } from "./routing/routes";
+
 import Loading from "./components/Loading";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import City from "./components/City"
 import Home from "./views/Home";
+import Dashboard from "./views/Dashboard";
 import Profile from "./views/Profile";
-import ExternalApi from "./views/ExternalApi";
 import { useAuth0 } from "@auth0/auth0-react";
 import history from "./utils/history";
 
@@ -25,6 +25,7 @@ const App = () => {
   const [cities, setCities] = useState([]);
 
   useEffect(() => {
+    document.title = "Weather App";
     loadCities(setCities);
   }, [setCities]);
 
@@ -41,12 +42,15 @@ const App = () => {
       <div id="app" className="d-flex flex-column h-100">
         <NavBar />
         <Container className="flex-grow-1 mt-5">
-          hello world
-          <City city={cities} />
           <Switch>
             <Route path="/" exact component={Home} />
+            <Route path="/dashboard">
+              <Dashboard 
+                cities = {cities}
+                setCities = {setCities}
+              />
+            </Route>
             <Route path="/profile" component={Profile} />
-            <Route path="/external-api" component={ExternalApi} />
           </Switch>
         </Container>
         <Footer />

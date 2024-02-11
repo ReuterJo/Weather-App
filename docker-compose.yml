@@ -3,14 +3,14 @@ services:
     build: ./weather-app-backend/
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/backend/code
+      - ./weather-app-backend:/backend/code
     ports:
       - "8000:8000"
   frontend:
     build: ./weather-app-frontend/
     command: npm start
     volumes:
-      - .:/frontend/code
+      - ./weather-app-frontend:/frontend/code
     ports:
       - "3000:3000"
       - "3001:3001"
