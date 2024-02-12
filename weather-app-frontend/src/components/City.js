@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { loadCity, deleteCity } from "../routing/routes";
 import { Button, Container } from "reactstrap";
 
-const City = ({ city_id, userProfile, setUserProfile }) => {
+const City = ({ city_id, userProfile, setUserProfile, setCities }) => {
   const [city, setCity] = useState([]);
   
   useEffect(() => {
@@ -17,7 +17,7 @@ const City = ({ city_id, userProfile, setUserProfile }) => {
         {city.name}
         <Button className="float-right bg-transparent border-0"
           onClick={() => {
-            deleteCity(city_id, userProfile, setUserProfile)
+            deleteCity(city_id, userProfile, setUserProfile, setCities)
         }}>
           <FontAwesomeIcon icon="trash" className="text-dark" />
         </Button>

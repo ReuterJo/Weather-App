@@ -39,8 +39,7 @@ const loadCities = async (setCities, userProfile) => {
   .then(res => {
     const filtered_cities = res.data.filter((city) => !userProfile.cities.includes(city.id));
     setCities(filtered_cities);
-  }
-  )
+  })
   .catch(err => console.log(err));
 };
 
@@ -60,8 +59,8 @@ const addCity = async (city_id, userProfile, setUserProfile, setCities) => {
     cities: newCities,
   })
   .then(res => {
-    setUserProfile(res.data)
-    // TODO: Remove city from the list of selectable cities
+    setUserProfile(res.data);
+    loadCities(setCities, res.data);
   })
   .catch(err => console.log(err))
 };
@@ -73,8 +72,8 @@ const deleteCity = async (city_id, userProfile, setUserProfile, setCities) => {
     cities: userProfile.cities.filter((city) => city !== city_id),
   })
   .then(res => {
-    setUserProfile(res.data)
-    // TODO: Put city back into the list of selectable cities
+    setUserProfile(res.data);
+    loadCities(setCities, res.data);
   })
   .catch(err => console.log(err))
 };

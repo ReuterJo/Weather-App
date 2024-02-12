@@ -44,6 +44,7 @@ export const DashboardComponent = () => {
                                 city_id={col}
                                 userProfile={userProfile}
                                 setUserProfile={setUserProfile}
+                                setCities={setCities}
                             />
                         </Col>
                     ))}
@@ -53,7 +54,7 @@ export const DashboardComponent = () => {
         <div className="next-steps my-5">
             <Form onSubmit={(e) => {
                 e.preventDefault();
-                addCity(selectedCity[0].id, userProfile, setUserProfile);
+                addCity(selectedCity[0].id, userProfile, setUserProfile, setCities);
                 setSelectedCity([]);
             }}>
                 <FormGroup>
