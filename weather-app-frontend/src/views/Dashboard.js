@@ -1,11 +1,14 @@
 import React, { Fragment, useState, useEffect } from "react";
 
-import { loadUserProfile } from "../routing/routes";
+import { loadUserProfileAndCities, addCity } from "../routing/routes";
 
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import Loading from "../components/Loading";
-import { Row, Col } from "reactstrap";
+import { Row, Col, Form, FormGroup, Label, Button, InputGroup } from "reactstrap";
 import City from "../components/City"
+import { Typeahead } from 'react-bootstrap-typeahead'; // ES2015
+// Import as a module in your JS
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 export const DashboardComponent = () => {
     
@@ -15,12 +18,14 @@ export const DashboardComponent = () => {
         "userId": null,
         "cities": []
     });
+    const [selectedCity, setSelectedCity] = useState([]);
+    const [cities, setCities] = useState([]);
 
     const user_id = user.sub.substring(user.sub.indexOf("|")+1);
 
     useEffect(() => {
-        loadUserProfile(user_id, setUserProfile);
-      }, [user_id, setUserProfile]);
+        loadUserProfileAndCities(user_id, setUserProfile, setCities);
+      }, [user_id, setUserProfile, setCities]);
 
     return (
         <Fragment>
@@ -45,8 +50,29 @@ export const DashboardComponent = () => {
                 </Row>
             </div>
         )}
-        <div>
-            <p>Add button goes here</p>
+        <div className="next-steps my-5">
+            <Form onSubmit={(e) => {
+                e.preventDefault();
+                addCity(selectedCity[0].id, userProfile, setUserProfile);
+                setSelectedCity([]);
+            }}>
+                <FormGroup>
+                    <Label>Add City</Label>
+                    <Typeahead
+                    id="basic-typeahead-single"
+                    labelKey="name"
+                    onChange={setSelectedCity}
+                    options={cities}
+                    placeholder="Choose a city..."
+                    selected={selectedCity}
+                    />
+                </FormGroup>
+                <InputGroup>
+                    <Button type="submit">
+                        Submit
+                    </Button>
+                </InputGroup>
+            </Form>
         </div>
         </Fragment>
     );
