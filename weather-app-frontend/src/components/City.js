@@ -15,7 +15,7 @@ const City = ({ city_id, userProfile, setUserProfile }) => {
       <h5 className="mx-2">  
         <FontAwesomeIcon icon="city" className="mr-4 mt-2" />
         {city.name}
-        <Button onClick={deleteCity(city_id, userProfile, setUserProfile)} className="float-right bg-transparent border-0">
+        <Button className="float-right bg-transparent border-0">
           <FontAwesomeIcon icon="trash" className="text-dark" />
         </Button>
       </h5>

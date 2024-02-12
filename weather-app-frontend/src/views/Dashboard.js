@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 
-import { loadUser } from "../routing/routes";
+import { loadUserProfile } from "../routing/routes";
 
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import Loading from "../components/Loading";
@@ -10,31 +10,35 @@ import City from "../components/City"
 export const DashboardComponent = () => {
     
     const { user } = useAuth0();
-    const [cities, setCities] = useState([]);
+    const [userProfile, setUserProfile] = useState({
+        "id": null,
+        "userId": null,
+        "cities": []
+    });
 
     const user_id = user.sub.substring(user.sub.indexOf("|")+1);
 
     useEffect(() => {
-        loadUser(user_id, setCities);
-      }, [user_id, setCities]);
+        loadUserProfile(user_id, setUserProfile);
+      }, [user_id, setUserProfile]);
 
     return (
         <Fragment>
-        {cities.length === 0 && (
+        {userProfile.cities.length === 0 && (
             <div className="next-steps my-5">
                 <h2 className="my-5 text-center">Add Cities</h2>
             </div>
         )}
-        {cities.length !== 0 && (
+        {userProfile.cities.length !== 0 && (
             <div className="next-steps my-5">
                 <h2 className="my-5 text-center">Your Cities</h2>
                 <Row className="d-flex justify-content-between">
-                    {cities.map((col, i) => (
+                    {userProfile.cities.map((col, i) => (
                         <Col key={i} md={6} className="mb-4">
                             <City 
                                 city_id={col}
-                                user_id={user_id}
-                                setCities={setCities}
+                                userProfile={userProfile}
+                                setUserProfile={setUserProfile}
                             />
                         </Col>
                     ))}
