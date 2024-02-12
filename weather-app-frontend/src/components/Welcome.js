@@ -14,6 +14,9 @@ const Welcome = () => {
 
             <p className="lead">
                 Welcome {user.name}! How's the weather today?
+                <br />
+                <br />
+                Add and remove cities from your dashboard to see only relevant weather forecasts.
             </p>
         </div>
   );
