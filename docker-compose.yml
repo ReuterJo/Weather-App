@@ -1,4 +1,13 @@
 services:
+  api:
+    build: ./weather-app-api/
+    command: uvicorn app.main:app --host 0.0.0.0 --port 5000
+    environment:
+      - OWM_KEY=ee27f16ae2eaad63c1c0b66c375e73aa
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./weather-app-api:/app
   backend:
     build: ./weather-app-backend/
     command: python manage.py runserver 0.0.0.0:8000
@@ -16,3 +25,4 @@ services:
       - "3001:3001"
     depends_on:
       - backend
+      - api

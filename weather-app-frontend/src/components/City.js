@@ -27,11 +27,11 @@ const City = ({ city_id, userProfile, setUserProfile, setCities }) => {
         <Col key={1} md={6}>
           <p>State: {city.state}</p>
           <p>Country: {city.country}</p>
-          <p>Temperature: TBD</p>
-          <p>Feels Like: TBD</p>
-          <p>High: TBD</p>
-          <p>Low: TBD</p>
-          <p>Description: TBD</p>
+          <p>Temperature: {city.temp}</p>
+          <p>Feels Like: {city.feels_like}</p>
+          <p>High: {city.temp_max}</p>
+          <p>Low: {city.temp_min}</p>
+          <p>Description: {city.description}</p>
         </Col>
         <Col key={2} md={6}>
           <img className="ml-3 app-logo" src={logo} alt="Rain" width="200" />
