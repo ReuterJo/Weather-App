@@ -16,7 +16,9 @@ class City(models.Model):
 
     def __str__(self):
         return self.name + ", " + self.state + ", " + self.country
-    
+
+# Need to define a intersection table to maintain order of city addition to user profile
+
 class UserId(models.Model):
     userId = models.CharField(max_length=150)
     cities = models.ManyToManyField(City, blank=True, default='')

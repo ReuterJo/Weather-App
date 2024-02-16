@@ -2,11 +2,15 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { loadCity, deleteCity } from "../routing/routes";
 import { Button, Container, Row, Col } from "reactstrap";
-import logo from "../assets/weather-icons-master/design/fill/animation-ready/rain.svg";
+import WeatherIcon from "./WeatherIcon"
 
 const City = ({ city_id, userProfile, setUserProfile, setCities }) => {
   const [city, setCity] = useState([]);
   
+  function kelvinToFahrenheit(temp) {
+    return Math.round((temp - 273.15) * 9/5 + 32);
+  }
+
   useEffect(() => {
     loadCity(city_id, setCity);
   }, [city_id, setCity]);
@@ -27,14 +31,14 @@ const City = ({ city_id, userProfile, setUserProfile, setCities }) => {
         <Col key={1} md={6}>
           <p>State: {city.state}</p>
           <p>Country: {city.country}</p>
-          <p>Temperature: {city.temp}</p>
-          <p>Feels Like: {city.feels_like}</p>
-          <p>High: {city.temp_max}</p>
-          <p>Low: {city.temp_min}</p>
+          <p>Temperature: {kelvinToFahrenheit(city.temp)}</p>
+          <p>Feels Like: {kelvinToFahrenheit(city.feels_like)}</p>
+          <p>High: {kelvinToFahrenheit(city.temp_max)}</p>
+          <p>Low: {kelvinToFahrenheit(city.temp_min)}</p>
           <p>Description: {city.description}</p>
         </Col>
         <Col key={2} md={6}>
-          <img className="ml-3 app-logo" src={logo} alt="Rain" width="200" />
+          <WeatherIcon description={city.description} />
         </Col>
       </Row>
     </Container>

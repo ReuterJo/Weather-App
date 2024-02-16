@@ -8,6 +8,6 @@ class CityAdmin(admin.ModelAdmin):
 
 class UserIdAdmin(admin.ModelAdmin):
     list_display = ('id', 'userId')
-
+    
 admin.site.register(City, CityAdmin)
 admin.site.register(UserId, UserIdAdmin)
