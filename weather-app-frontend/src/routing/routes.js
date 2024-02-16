@@ -1,6 +1,5 @@
 import axios from "axios";
 const BACKEND = "http://localhost:8000";
-const API = "http://localhost:5000";
 
 const loadUserProfileAndCities = async (user_id, setUserProfile, setCities) => {
   axios
@@ -50,30 +49,10 @@ const loadCity = async (city_id, setCity) => {
   .get(`${BACKEND}/api/cities/${city_id}`)
   .then(res => {
     const city = res.data;
-    loadCityWeather(city, setCity);
+    setCity(city);
   })
   .catch(err => console.log(err));
 };
-
-const loadCityWeather = async (city, setCity) => {
-  axios
-  .get(`${API}/0.1/current?city=${city.name}&state=${city.state}`)
-  .then(res => {
-    const cityAndWeather = {
-      name: city.name,
-      state: city.state,
-      country: city.country,
-      temp: res.data.main.temp,
-      feels_like: res.data.main.feels_like,
-      temp_min: res.data.main.temp_min,
-      temp_max: res.data.main.temp_max,
-      description: res.data.weather[0].main
-    };
-    console.log(cityAndWeather)
-    setCity(cityAndWeather);
-  })
-  .catch(err => console.log(err));
-}
 
 const addCity = async (city_id, userProfile, setUserProfile, setCities) => {
   const newCities = userProfile.cities;

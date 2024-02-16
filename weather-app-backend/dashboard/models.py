@@ -5,6 +5,11 @@ class City(models.Model):
     name = models.CharField(max_length=150)
     country = models.CharField(max_length=150)
     state = models.CharField(max_length=150)
+    temp = models.FloatField(default=0)
+    feels_like = models.FloatField(default=0)
+    temp_min = models.FloatField(default=0)
+    temp_max = models.FloatField(default=0)
+    description = models.CharField(max_length=150, default='')
 
     class Meta:
         ordering = ["state"]
