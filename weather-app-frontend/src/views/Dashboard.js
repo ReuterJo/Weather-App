@@ -38,10 +38,10 @@ export const DashboardComponent = () => {
             <div className="next-steps my-5">
                 <h2 className="my-5 text-center">Your Cities</h2>
                 <Row className="d-flex justify-content-between">
-                    {userProfile.cities.map((col, i) => (
-                        <Col key={i} md={6} className="mb-4">
+                    {userProfile.cities.map(city_id => (
+                        <Col key={city_id} md={6} className="mb-4">
                             <City 
-                                city_id={col}
+                                city_id={city_id}
                                 userProfile={userProfile}
                                 setUserProfile={setUserProfile}
                                 setCities={setCities}
