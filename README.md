@@ -1,6 +1,6 @@
 # Weather-App
 
-A weather forecasting web application built using microservices architecture and integrated with an external API.
+A weather forecasting web application built using microservices architecture and integrated with an external API. Microservices deployed using Docker Compose.
 
 Video presentation of React frontend on [YouTube](https://www.youtube.com/watch?v=hFhwaRz3ofI).
 
